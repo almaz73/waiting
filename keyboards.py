@@ -1,4 +1,4 @@
-from aiogram.types import ReplyKeyboardMarkup, InlineKeyboardMarkup, KeyboardButton, InlineKeyboardButton
+from aiogram.types import ReplyKeyboardMarkup, InlineKeyboardMarkup, KeyboardButton, InlineKeyboardButton, WebAppInfo
 
 startMenu = ReplyKeyboardMarkup(
     keyboard=[
@@ -41,3 +41,9 @@ bt6 = InlineKeyboardButton(text='755',callback_data='755')
 keyboard = InlineKeyboardMarkup(
     inline_keyboard=[[bt1, bt2, bt3, bt4, bt5, bt6]]
 )
+
+
+keySite = InlineKeyboardMarkup(row_width=1,
+                                inline_keyboard=[
+                                    [InlineKeyboardButton(text='Сайт', web_app=WebAppInfo(url=f'https://fmap.ru/'))]
+                                ])
