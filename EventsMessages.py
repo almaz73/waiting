@@ -15,6 +15,8 @@ links = """/cit - Случайная цитата
 async def get_message(message):
     print('---message.text', message.text)
 
+    if message.text == 'zzz':
+        return await message.answer("Нажмите кнопку, чтобы открыть Mini App:", reply_markup=kb.keyboard222)
 
     if message.text == 'web':
         return await message.answer(text='САЙТ', reply_markup=kb.keySite)

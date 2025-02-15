@@ -1,6 +1,7 @@
 import asyncio
 import logging
 import sys
+import json
 
 import EventsKeyborads
 import env
@@ -10,7 +11,7 @@ from aiogram import F
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
 from aiogram.filters import CommandStart
-from aiogram.types import Message, CallbackQuery
+from aiogram.types import Message, CallbackQuery, ContentType
 
 import keyboards as kb
 import EventsMessages
@@ -26,16 +27,30 @@ async def command_start_handler(message: Message) -> None:
 
 @dp.message()
 async def echo_handler(message: Message) -> None:
+    print('??message=', message)
     try: await EventsMessages.get_message(message)
     except TypeError: await message.answer("Nice try!")
 
 
 @dp.callback_query(F.data)
 async def process_buttons_press(callback: CallbackQuery):
+    print('??callback', callback)
     try: await EventsKeyborads.get_keyboard(callback)
     except TypeError: await callback.message.answer("error button")
 
 
+
+# Обработчик данных из Mini App
+@dp.message(lambda message: message.web_app_data)
+async def web_app2(message: Message):
+    print('???',message.web_app_data)
+    await message.answer("test")
+
+@dp.message(F.content_type == ContentType.WEB_APP_DATA)
+async def parse_data(message: Message):
+    data = message.web_app_data.data
+    print('222???',message.web_app_data)
+    print(data)
 
 async def main() -> None:
     bot = Bot(token=TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))

@@ -55,3 +55,10 @@ wb_setting = InlineKeyboardMarkup(row_width=1,
         text='Настройки WB',
         callback_data='wb_settings'
     )]])
+
+keyboard222 = InlineKeyboardMarkup(inline_keyboard=[
+    [InlineKeyboardButton(
+        text="Open Mini App",
+        web_app=WebAppInfo(url="https://fmap.ru/tg_wbFree/set.html")  # Укажите URL вашего Mini App
+    )]
+])
