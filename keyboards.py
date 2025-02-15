@@ -4,7 +4,7 @@ startMenu = ReplyKeyboardMarkup(
     keyboard=[
         [
             KeyboardButton(text='✅ Цитата'),
-            KeyboardButton(text='☸ Меню')
+            KeyboardButton(text='☸ Wildberries')
         ]
     ],
     resize_keyboard=True,
@@ -38,12 +38,20 @@ bt3 = InlineKeyboardButton(text='463',callback_data='463')
 bt4 = InlineKeyboardButton(text='542',callback_data='542')
 bt5 = InlineKeyboardButton(text='567',callback_data='567')
 bt6 = InlineKeyboardButton(text='755',callback_data='755')
-keyboard = InlineKeyboardMarkup(
+leftover_buttons = InlineKeyboardMarkup(
     inline_keyboard=[[bt1, bt2, bt3, bt4, bt5, bt6]]
 )
 
 
 keySite = InlineKeyboardMarkup(row_width=1,
-                                inline_keyboard=[
-                                    [InlineKeyboardButton(text='Сайт', web_app=WebAppInfo(url=f'https://fmap.ru/'))]
-                                ])
+    inline_keyboard=[[InlineKeyboardButton(
+        text='Сайт', web_app=WebAppInfo(url='https://fmap.ru/tg_wbFree/set.html')
+    )]])
+wb_setting = InlineKeyboardMarkup(row_width=1,
+    inline_keyboard=[[InlineKeyboardButton(
+        text='Остатки',
+        callback_data='wb_leftovers'
+    ),InlineKeyboardButton(
+        text='Настройки WB',
+        callback_data='wb_settings'
+    )]])

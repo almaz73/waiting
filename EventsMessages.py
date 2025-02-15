@@ -1,5 +1,7 @@
 from apps import citation, translationLink as trans
 import keyboards as kb
+from apps import wb_free
+import env
 
 # обработка текстовых сообщений
 
@@ -10,13 +12,16 @@ links = """/cit - Случайная цитата
 /love - I love You'"""
 
 
-async def getMessage(message):
+async def get_message(message):
     print('---message.text', message.text)
 
-    if message.text == '777':
-        return await message.answer(text='Кнопки', reply_markup=kb.keyboard)
+
     if message.text == 'web':
         return await message.answer(text='САЙТ', reply_markup=kb.keySite)
+    if message.text == '☸ Wildberries':
+        key = env.WB_KEY  # Пока ключ берем зашитый в код
+        await message.answer('<b>Прогноз на 14 дней</b>:\n\n'+wb_free.getWB(key), parse_mode='HTML')
+        return await  message.answer('Настройки WB', reply_markup=kb.wb_setting)
     if message.text == '/love': return await message.answer(kb.iloveYou)
     if message.text == '✅ Цитата':
         answer = citation.nextCitation()
