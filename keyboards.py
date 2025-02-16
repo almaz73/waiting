@@ -4,7 +4,8 @@ startMenu = ReplyKeyboardMarkup(
     keyboard=[
         [
             KeyboardButton(text='✅ Цитата'),
-            KeyboardButton(text='☸ Wildberries')
+            KeyboardButton(text='☸ Wildberries'),
+            KeyboardButton(text='☸ САЙТ', web_app=WebAppInfo(url='https://fmap.ru/tg_wbFree/set.html'))
         ]
     ],
     resize_keyboard=True,
@@ -60,5 +61,9 @@ keyboard222 = InlineKeyboardMarkup(inline_keyboard=[
     [InlineKeyboardButton(
         text="Open Mini App",
         web_app=WebAppInfo(url="https://fmap.ru/tg_wbFree/set.html")  # Укажите URL вашего Mini App
-    )]
+    )],
+    [InlineKeyboardButton(
+        text='Профиль',
+        web_app=WebAppInfo(url='https://fmap.ru/tg_wbFree/set.html'))]
+
 ])

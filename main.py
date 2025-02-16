@@ -24,10 +24,15 @@ dp = Dispatcher()
 async def command_start_handler(message: Message) -> None:
     await message.answer(f"Hello, {html.bold(message.from_user.full_name)}!", reply_markup=kb.startMenu)
 
+@dp.message(lambda message: message.web_app_data and message.web_app_data.data)
+async def echo_miniApp(message: Message) -> None:
+    # пришло с веб апп
+    print('??messageFromMiniAPP=', message.web_app_data.data)
+
 
 @dp.message()
 async def echo_handler(message: Message) -> None:
-    print('??message=', message)
+    print('m e s s a g e =', message)
     try: await EventsMessages.get_message(message)
     except TypeError: await message.answer("Nice try!")
 
@@ -39,18 +44,6 @@ async def process_buttons_press(callback: CallbackQuery):
     except TypeError: await callback.message.answer("error button")
 
 
-
-# Обработчик данных из Mini App
-@dp.message(lambda message: message.web_app_data)
-async def web_app2(message: Message):
-    print('???',message.web_app_data)
-    await message.answer("test")
-
-@dp.message(F.content_type == ContentType.WEB_APP_DATA)
-async def parse_data(message: Message):
-    data = message.web_app_data.data
-    print('222???',message.web_app_data)
-    print(data)
 
 async def main() -> None:
     bot = Bot(token=TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
